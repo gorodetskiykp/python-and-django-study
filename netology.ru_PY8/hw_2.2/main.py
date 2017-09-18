@@ -1,17 +1,7 @@
-cook_book = {}
-with open('recipes.txt', encoding='utf8') as file:
-    for ingredient in file:
-        key = ingredient.strip().lower()
-        cook_book[key] = []
-        for _ in range(int(file.readline())):
-            ingredient_name, quantity, measure = \
-                file.readline().strip().split(' | ')
-            cook_book[key].append({
-                'ingredient_name': ingredient_name,
-                'quantity' : int(quantity),
-                'measure' : measure
-                }) 
-        file.readline()
+import json
+
+with open('recipes.json', 'r') as file:
+    cook_book = json.loads(file.read())
 
 def get_shop_list_by_dishes(dishes, person_count):
     shop_list = {}
@@ -31,7 +21,7 @@ def print_shop_list(shop_list):
 
 def create_shop_list():
     # person_count = int(input('Введите количество человек: '))
-    person_count = 3
+    person_count = 4
     # dishes = input('Введите блюда в расчете на одного человека (через запятую): ').lower().split(', ')
     dishes = 'стейк, салат'.lower().split(', ')
     shop_list = get_shop_list_by_dishes(dishes, person_count)
