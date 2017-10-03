@@ -3,7 +3,7 @@ import re
 
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
-abs_path = os.path.join(current_dir,  migrations)
+abs_path = os.path.join(current_dir, migrations)
 
 def files_reader():
     """Возвращает список sql-файлов в директории."""
