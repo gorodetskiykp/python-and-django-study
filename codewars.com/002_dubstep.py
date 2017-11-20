@@ -37,33 +37,21 @@ import unittest
 def song_decoder(song):
     return ' '.join([word for word in song.split('WUB') if word != ''])
 
-
 """
 Some solutions
 
-http://www.codewars.com/kata/reviews/55c7dba2ea4fa879c4000015/groups/55c81e198daa9ba951000040
-import operator
-def persistence(n):
-    i = 0
-    while n>=10:
-        n=reduce(operator.mul,[int(x) for x in str(n)],1)
-        i+=1
-    return i
+http://www.codewars.com/kata/reviews/555aca9335d4c4602600018c/groups/555e52465b7f06f9ac00006e
+def song_decoder(song):
+    return " ".join(song.replace('WUB', ' ').split())
 
-http://www.codewars.com/kata/reviews/55c7dba2ea4fa879c4000015/groups/55cce4e83ecaf850ac00001a    
-def persistence(n):
-    nums = [int(x) for x in str(n)]
-    sist = 0
-    while len(nums) > 1:
-        newNum = reduce(lambda x, y: x * y, nums)
-        nums = [int(x) for x in str(newNum)]
-        sist = sist + 1
-    return sist
+http://www.codewars.com/kata/reviews/555aca9335d4c4602600018c/groups/555b3732ec532a53ce000073
+def song_decoder(song):
+    import re
+    return re.sub('(WUB)+', ' ', song).strip()
 
-http://www.codewars.com/kata/reviews/55c7dba2ea4fa879c4000015/groups/5704aea446edc2e5c4000864
-from operator import mul
-def persistence(n):
-    return 0 if n<10 else persistence(reduce(mul,[int(i) for i in str(n)],1))+1
+http://www.codewars.com/kata/reviews/555aca9335d4c4602600018c/groups/5638f63dfd2e9b149a0000ad
+def song_decoder(song):
+    return ' '.join([a for a in song.split('WUB') if a])
 """
 
 
