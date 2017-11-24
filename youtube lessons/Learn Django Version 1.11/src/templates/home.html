@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Hello World!</h1>
+<h3>{{ block.super }}</h3>
+<p>
+    This is {{html_var}} coming through
+</p>
+<p>
+    {% if num %}
+    Random number is {{num}}
+    {% endif %}
+</p>
+<p>
+    {% for some_item in some_list %}
+        {% if some_item|divisibleby:"2" %}
+            Even number
+        {% endif %}
+        {{ some_item }}<br />
+    {% endfor %}
+</p>
+
+{% endblock content %}
