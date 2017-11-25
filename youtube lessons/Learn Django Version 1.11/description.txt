@@ -1,3 +1,10 @@
 https://www.youtube.com/watch?v=yDv5FIAeyoY&list=PLEsfXFp6DpzRHiyW04co1y-CjDM1Y1sIS
+
 https://www.codingforentrepreneurs.com/blog/create-a-blank-django-project/
+https://www.codingforentrepreneurs.com/blog/common-regular-expressions-for-django-urls/
+https://www.codingforentrepreneurs.com/blog/a-unique-slug-generator-for-django/
+https://www.codingforentrepreneurs.com/blog/a-unique-slug-generator-for-django/
+
 https://github.com/codingforentrepreneurs/Try-Django-1.11
+
+http://django-extensions.readthedocs.io/en/latest/runserver_plus.html
