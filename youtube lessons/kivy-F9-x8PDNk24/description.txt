@@ -1,0 +1,23 @@
+Kivy мобильные приложения на Python
+https://www.youtube.com/watch?v=F9-x8PDNk24
+
+https://kivy.org/docs/installation/installation-linux.html#ubuntu-11-10-or-newer
+
+https://github.com/kivy/plyer
+https://plyer.readthedocs.io/
+
+https://pyjnius.readthedocs.io/en/latest/
+
+http://android.kivy.org/
+https://github.org/kivy/buildozer
+https://github.org/kivy/python-for-android
+http://kivy.org/docs/guide/packaging-android.html
+
+https://github.org/kivy/kivy-ios
+
+http://upx.sourceforge.net/ - сжать до 50%
+https://liftoff.github.io/pyminifier - анализ, сжатие кода
+
+https://kivyspacegame.wordpress.com/category/kivy/
+https://wamazeka.su/quick-start-guide-kivy/
+http://kivy.org/planet/
