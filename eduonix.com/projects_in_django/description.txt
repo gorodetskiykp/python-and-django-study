@@ -1,0 +1,5 @@
+https://www.eduonix.com/dashboard/projects-in-django-learn-django-building-projects
+
+Visual Studio Code
++ MagicPython
++ Code Runner
