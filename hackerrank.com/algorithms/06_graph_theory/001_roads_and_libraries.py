@@ -1,32 +1,46 @@
 """
 https://www.hackerrank.com/challenges/torque-and-development/problem
+
+Минимальное остовное дерево
+https://ru.wikipedia.org/wiki/%D0%9C%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE
 """
 
 import sys
 
+def dfs(graph, start):
+    visited, stack = set(), [start]
+    while stack:
+        vertex = stack.pop()
+        if vertex not in visited:
+            visited.add(vertex)
+            stack.extend(graph[vertex] - visited)
+    return visited
+
+def make_graph(graph_list):
+    graph = {index+1: set() for index in range(len(graph_list))}
+    for pair in graph_list:
+        a, b = pair
+        graph[a].add(b)
+        graph[b].add(a)
+    return graph
 
 def roadsAndLibraries(n, c_lib, c_road, cities):
-    cities_list = list(range(1, n+1))
-    print('Города:', cities_list)
-    city = cities_list[0]
-    print('Город:', city)
-    print('Дороги:', cities)
-    for _ in range(2):
-        for road in cities:
-            print('Дорога:', road)
-            print(city, city in road)
-            if city in road:
-                if city in cities_list:
-                    cities_list.remove(city)
-                    print('Города:', cities_list)
-                cities.remove(road)
-                print('Дороги:', cities)
-                road.remove(city)
-                city = road[0]
-                print('Город:', city)
-                break
-    return '--'
+    cities_graph = make_graph(cities)
+    cities = set(range(1, n+1))
+    print(cities)
+    print(cities_graph)
+    start = 1
+    while True:
+        visited = dfs(cities_graph, start)
+        print(visited)
+        cities = cities - visited
+        if cities:
+            start = list(cities)[0]
+            continue
+        else:
+            break
 
+    return ''
 
 if __name__ == "__main__":
     # q = int(input().strip())
