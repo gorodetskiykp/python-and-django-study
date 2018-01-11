@@ -25,22 +25,25 @@ def make_graph(graph_list):
     return graph
 
 def roadsAndLibraries(n, c_lib, c_road, cities):
+    if c_lib <= c_road:
+        return n * c_lib
     cities_graph = make_graph(cities)
     cities = set(range(1, n+1))
-    print(cities)
-    print(cities_graph)
     start = 1
+    libs = 1
+    roads = 0
     while True:
         visited = dfs(cities_graph, start)
-        print(visited)
+        roads += len(visited) - 1
         cities = cities - visited
         if cities:
             start = list(cities)[0]
+            libs += 1
             continue
         else:
             break
 
-    return ''
+    return libs * c_lib + roads * c_road
 
 if __name__ == "__main__":
     # q = int(input().strip())
@@ -62,8 +65,8 @@ if __name__ == "__main__":
         n, m, c_lib, c_road = [int(n), int(m), int(c_lib), int(c_road)]
         cities = []
         for cities_i in range(m):
-           cities_t = [int(cities_temp) for cities_temp in input_list[a0][1][cities_i].split()]
-           cities.append(cities_t)
+            cities_t = [int(cities_temp) for cities_temp in input_list[a0][1][cities_i].split()]
+            cities.append(cities_t)
 
         result = roadsAndLibraries(n, c_lib, c_road, cities)
         print(result)
