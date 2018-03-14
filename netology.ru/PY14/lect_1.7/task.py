@@ -1,5 +1,5 @@
 class Alive:
-    
+
     def __init__(self):
         self.sound = "Aaarghh"
         self.paws = 4
@@ -8,26 +8,23 @@ class Alive:
         self.name = "It"
         self.weight = 100
         self.jump = True
-        
-    
+
     def scream(self, sound=''):
         sound = sound if sound else self.sound
         print(sound)
-        
-    
+
     def run(self, speed=10):
         print("run")
         return speed
-        
-    
+
     def stop(self):
         print("stop")
         self.speed = 0
         return self.speed
-        
+
 
 class Animal(Alive):
-    
+
     def __init__(self):
         super().__init__()
         self.sound = "Raaaaagh"
@@ -36,9 +33,9 @@ class Animal(Alive):
         self.name = "Animal"
         self.weight = 150
 
-    
+
 class Bird(Alive):
-    
+
     def __init__(self):
         super().__init__()
         self.sound = "Kraaaghh"
@@ -49,7 +46,6 @@ class Bird(Alive):
         self.get_eggs = True
         self.name = "Bird"
         self.weight = 20
-        
 
     def go_fly(self, fly_speed=30):
         if self.fly:
@@ -59,8 +55,7 @@ class Bird(Alive):
             print("Sorry, I can't fly:(")
             self.fly_speed = fly_speed = 0
         return fly_speed
-        
-    
+
     def stop(self):
         print("stop")
         self.speed = 0
@@ -69,16 +64,16 @@ class Bird(Alive):
 
 
 class Cow(Animal):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Muuaghh"
         self.name = name if name else "Cow"
         self.jump = False
-            
+
 
 class Goat(Animal):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Beeeeakhh"
@@ -87,7 +82,7 @@ class Goat(Animal):
 
 
 class Sheep(Animal):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Mmeeeeaa"
@@ -96,7 +91,7 @@ class Sheep(Animal):
 
 
 class Pig(Animal):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Wuuuiiieaa"
@@ -107,7 +102,7 @@ class Pig(Animal):
 
 
 class Duck(Bird):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Crackx"
@@ -117,7 +112,7 @@ class Duck(Bird):
 
 
 class Chicken(Bird):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Koookk"
@@ -125,10 +120,10 @@ class Chicken(Bird):
         self.weight = 15
         self.jump = False
         self.fly = False
-        
+
 
 class Goose(Bird):
-    
+
     def __init__(self, name=''):
         super().__init__()
         self.sound = "Ghaaah"
@@ -136,7 +131,7 @@ class Goose(Bird):
         self.weight = 40
         self.jump = False
         self.fly = False
-        
+
 
 cow = Cow("Burjonka")
 cow.scream()
