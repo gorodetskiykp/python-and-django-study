@@ -1,14 +1,12 @@
 import chardet
 
-#def get_news(file_name, file_code_page='utf8') -> str:
-#    with open(file_name, encoding=file_code_page) as text_file:
-#        return text_file.read()
 
-def get_news(file_name) -> str:
-    text_file = open(file_name, 'r')
-    code_page = chardet.detect(text_file)['encoding']
-    return text_file.encode(code_page)
-        
+def get_news(file_name):
+    with open(file_name, 'rb') as text_file:
+        raw_text = text_file.read()
+        code_page = chardet.detect(raw_text)['encoding']
+    return raw_text.decode(code_page)
+
         
 def get_top_words(text, word_length=6, top_range=10):
     words = {}
@@ -24,16 +22,11 @@ def get_top_words(text, word_length=6, top_range=10):
 
 
 def main():
-    files = [
-        #{'name': 'newsafr.txt', 'code_page': 'utf8'},
-        #{'name': 'newscy.txt', 'code_page': 'koi8-r'},
-        {'name': 'newsfr.txt', 'code_page': 'cp866'},
-        #{'name': 'newsit.txt', 'code_page': 'cp1251'},
-    ]
+    files = ['newsafr.txt', 'newscy.txt', 'newsfr.txt', 'newsit.txt']
     
     for news_file in files:
-        news_text = get_news(news_file['name'])
-        print("{}: {}".format(news_file['name'], ', '.join(get_top_words(news_text))))
+        news_text = get_news(news_file)
+        print("{}: {}".format(news_file, ', '.join(get_top_words(news_text))))
 
 
 if __name__ == "__main__":
