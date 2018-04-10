@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 def open_file(file_name, encoding):
     """
     читает файл
-    принимает имя фала и кодировку
+    принимает имя файла и кодировку
     возвращает текст файла
     """
     with open(file_name, encoding=encoding) as parsing_file:
