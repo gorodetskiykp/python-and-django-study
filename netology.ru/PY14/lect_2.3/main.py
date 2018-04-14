@@ -1,13 +1,16 @@
 import json
+import chardet
 import xml.etree.ElementTree as ET
 
-def open_file(file_name, encoding):
+def open_file(file_name):
     """
     читает файл
     принимает имя файла и кодировку
     возвращает текст файла
     """
-    with open(file_name, encoding=encoding) as parsing_file:
+    with open(file_name, 'rb') as parsing_file:
+        code_page = chardet.detect(parsing_file.read())['encoding']
+    with open(file_name, encoding=code_page) as parsing_file:
         return parsing_file.read()
 
 
@@ -24,7 +27,8 @@ def get_news(text, text_struct):
             news_list.append(item['description'])
     elif text_struct == 'xml':
         root = ET.fromstring(text)
-        for item in root[0][6:]:
+        items = root.find('channel').findall('item')
+        for item in items:
             news_list.append(item[2].text)
     return news_list
 
@@ -70,24 +74,23 @@ def get_common_words(frequencies_dict, top_range=10):
 
 def main():
     files = [
-        {'file_name': "newsafr.json", 'coding': "utf8"},
-        {'file_name': "newsafr.xml", 'coding': "utf8"},
-        {'file_name': "newscy.json", 'coding': "koi8-r"},
-        {'file_name': "newscy.xml", 'coding': "koi8-r"},
-        {'file_name': "newsfr.json", 'coding': "iso8859-5"},
-        {'file_name': "newsfr.xml", 'coding': "iso8859-5"},
-        {'file_name': "newsit.json", 'coding': "cp1251"},
-        {'file_name': "newsit.xml", 'coding': "cp1251"},
+        "newsafr.json",
+        "newsafr.xml",
+        "newscy.json",
+        "newscy.xml",
+        "newsfr.json",
+        "newsfr.xml",
+        "newsit.json",
+        "newsit.xml",
     ]
 
     for news_file in files:
-        file_text = open_file(news_file['file_name'], news_file['coding'])
-        news_list = get_news(file_text, news_file['file_name'].split('.')[1])
+        file_text = open_file(news_file)
+        news_list = get_news(file_text, news_file.split('.')[1])
         words = get_long_words(news_list)
         words_frequecny = get_words_frequecny(words)
         top_frequecny_words = get_common_words(words_frequecny)
-
-        print("{}: {}".format(news_file['file_name'], ', '.join(top_frequecny_words)))
+        print("{}: {}".format(news_file, ', '.join(top_frequecny_words)))
 
 
 if __name__ == "__main__":
