@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -17,9 +18,10 @@ player_y_change = 0
 
 enemy_image = pygame.image.load("enemy.png")
 enemy_x = random.randint(0, 740)
-enemy_y = random.randint(0, 150)
+enemy_y = random.randint(0, 100)
 enemy_x_change = 0
-enemy_y_change = 0
+enemy_x_direction = 1
+enemy_y_change = 50
 
 
 def player(x, y):
@@ -51,12 +53,23 @@ while running:
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 player_y_change = 0
 
+    enemy_x_change = 1 * enemy_x_direction
+
     if 0 < player_x + player_x_change < 740:
         player_x += player_x_change
     if 0 < player_y + player_y_change < 540:        
         player_y += player_y_change
 
+    if 0 < enemy_x + enemy_x_change < 740:
+        enemy_x += enemy_x_change
+        enemy_y = int(enemy_y_change + 10 * math.sin(enemy_x * 0.05))
+    else:
+        enemy_x_direction *= -1
+        enemy_y_change += 50       
+
     player(player_x, player_y)
     enemy(enemy_x, enemy_y)
-    
     pygame.display.update()
+
+    if enemy_x <= player_x <= enemy_x + 64 and enemy_y <= player_y <= enemy_y + 64 or enemy_y > 540:
+        running = False
